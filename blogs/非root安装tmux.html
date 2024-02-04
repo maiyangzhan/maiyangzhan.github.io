@@ -1,36 +1,18 @@
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Install tmux without root</title>
-  </head>
-  <body>
-    <nav style="background-color: #333; overflow: hidden;">
-        <ul style="list-style-type: none; margin: 0; padding: 0;">
-            
-            <li style="float: left;"><a href="/blogs.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">blogs</a></li>
-            
-            <li style="float: left;"><a href="/about_me.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">about_me</a></li>
-            
-            <li style="float: left;"><a href="/index.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">index</a></li>
-            
-        </ul>
-    </nav>
-    <main style="padding: 0 50px;">
-         
-<h1 id="非root安装tmux转载">非root安装tmux（转载）</h1>
-<h2 id="步骤1">步骤1</h2>
+<h2 id="非root安装tmux">非root安装tmux</h2>
+<h3 id="步骤1">步骤1</h3>
 <p>下载tmux及其依赖软件：</p>
 <p>wget -c <a
 href="https://github.com/tmux/tmux/releases/tag/3.3a/tmux-3.3a.tar.gz">https://github.com/tmux/tmux/releases/tag/3.3a/tmux-3.3a.tar.gz</a></p>
 <p>wget -c
 https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz</p>
 <p>wget -c https://ftp.gnu.org/gnu/ncurses/ncurses-6.2.tar.gz</p>
-<h2 id="步骤2">步骤2</h2>
+<h3 id="步骤2">步骤2</h3>
 <p>解压这三个压缩包</p>
 <p>tar -zxvf ***.tar.gz</p>
-<h2 id="步骤3">步骤3</h2>
+<p>64服务器好像不支持解压wget到的压缩包，只能下载后传到服务器里。。。</p>
+<p><img src="非root安装tmux.html.media/media/image1.png"
+style="width:3.62022in;height:0.75795in" /></p>
+<h3 id="步骤3">步骤3</h3>
 <p>分别源码安装</p>
 <p>cd libevent-2.1.12-stable/</p>
 <p>./configure --prefix=/home/myz/tmux --disable-shared ###
@@ -41,7 +23,7 @@ https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/lib
 <p>./configure --prefix=/home/myz/tmux</p>
 <p>make &amp;&amp; make install</p>
 <p>ncurses会安在 /tmux/include</p>
-<h2 id="步骤4">步骤4</h2>
+<h3 id="步骤4">步骤4</h3>
 <p>安装tmux</p>
 <p>cd tmux-3.3a/</p>
 <p>./configure CFLAGS="-I/home/myz/tmux/include
@@ -54,7 +36,7 @@ https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/lib
 <p>source ~/.bashrc</p>
 <p>在tmux下使用vim按ESC会有延迟，需要在~/.tmux.conf中增加一句：</p>
 <p>set -g escape-time 0</p>
-<h2 id="常用命令">常用命令 </h2>
+<h3 id="常用命令">常用命令 </h3>
 <p>1）新建会话，比如新创建一个会话以"ccc"命名</p>
 <p>[root@Centos6 ~]# tmux new -s ccc</p>
 <p>加上参数-d，表示在后台新建会话</p>
@@ -89,8 +71,3 @@ https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/lib
 <p>[root@Centos6 ~]# tmux ls</p>
 <p>kevin: 1 windows (created Sun Sep 30 10:17:00 2018) [136x29]
 (attached)</p>
-
- 
-    </main>
-  </body>
-</html>

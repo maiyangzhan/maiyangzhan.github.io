@@ -1,0 +1,52 @@
+<h2 id="布置环境">布置环境</h2>
+<p># 在家目录创建环境/home/myz/clash</p>
+<p>$ <strong>mkdir clash</strong></p>
+<p>$ <strong>cd clash</strong></p>
+<p># 下载clash包</p>
+<p>先在windows中进入网址下载<a
+href="https://down.clash.la/Clash/Core/Releases/clash-linux-amd64-v1.18.0.gz">https://down.clash.la/Clash/Core/Releases/clash-linux-amd64-v1.18.0.gz</a>
+，然后传入linux中（因为linux好像连不上该网址）</p>
+<p>$ <strong>gzip -d clash-linux-amd64-v1.18.0.gz</strong></p>
+<p>$ <strong>mv clash-linux-amd64-v1.18.0 clash</strong></p>
+<p># 这里clash为二进制可以运行文件了</p>
+<p>$ <strong>chmod 755 clash</strong></p>
+<h2 id="传入配置">传入配置</h2>
+<p># 生成默认配置</p>
+<p>$ <strong>./clash -d .</strong> # 默认配置</p>
+<p>输入该命令后会出现几行东西，然后就卡住了，这时候我认为其实是clash处于开启状态了，可以新开一个终端查看是否有如下文件：</p>
+<p><img src="linux terminal clash.html.media/media/image1.png"
+style="width:4.97917in;height:0.83333in" /></p>
+<p>有的话表示默认配置已经创建完成了。</p>
+<p># 拉取机场配置，注意： 名称为：config.yaml</p>
+<p>我用的是nanoport，我直接在windows端的clash-profile中打开配置，上传到Linux上，要注意把名称改为config.yaml，然后覆盖掉默认配置中的config.yaml</p>
+<p>$ <strong>wget xxxx</strong> # 要么拉下来 要么自己拷贝上来</p>
+<p>$ ./clash -d . #
+就开始加载你的配置了，同样会卡住，应该就是指正在运行了，ctrl+c退出</p>
+<h2 id="日常使用">日常使用</h2>
+<p>ctrl+c退出后应该就取消代理了，下面我们直接添加到环境变量中：</p>
+<ol type="1">
+<li><p><strong>vim
+~/..bashrc开始准备命令并把下面的写进入</strong></p></li>
+</ol>
+<p>alias clash_start="screen -S clash /home/myz/clash/clash -d
+/home/myz/clash/"</p>
+<p>alias clash_stop="pkill clash"</p>
+<p>alias proxy_on="export https_proxy=127.0.0.1:7890 &amp;&amp; export
+http_proxy=127.0.0.1:7890"</p>
+<p>alias proxy_off="unset http_proxy https_proxy"</p>
+<ol start="2" type="1">
+<li><p><strong>source ~/.bashrc 重新载入</strong></p></li>
+<li><p><strong>clash_start会进入screen 按 ctrl + a +
+d退出后台</strong></p></li>
+<li><p><strong>proxy_on开启代理</strong></p></li>
+<li><p><strong>curl
+https://www.youtube.com/会发现马上返回结果</strong></p></li>
+</ol>
+<h2 id="github加速">Github加速</h2>
+<p>先用git config
+–list查看自己的git是否已有配置，如果有了可以先删掉：</p>
+<p>$ git config --global --unset user.name</p>
+<p>$ git config --global --edit #打开编辑器删除</p>
+<p>然后输入下面两条配置成功</p>
+<p>$ git config --global http.proxy 'http://127.0.0.1:7890'</p>
+<p>$ git config --global https.proxy 'https://127.0.0.1:7890'</p>

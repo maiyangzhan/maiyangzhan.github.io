@@ -1,0 +1,30 @@
+<p>建议先配置终端代理，因为LazyVim插件需要进入github下载，内网无法连上，终端代理的配置方法如文件【linux终端clash】所述</p>
+<p>先安装nvim</p>
+<p>curl -LO
+https://github.com/neovim/neovim/releases/latest/download/nvim.appimage</p>
+<p>chmod u+x nvim.appimage</p>
+<p>./nvim.appimage</p>
+<p>会打开nvim，代表安装成功</p>
+<p>可以将nvim.appimage移动到~/.local/bin/中并改名为nvim，并将~/.local/bin/在.bashrc中加入环境变量PATH中，source
+~/.bashrc后就可以通过nvim命令打开nvim了</p>
+<p>mv nvim.appimage ~/.local/bin/nvim</p>
+<p>再安装lazyvim</p>
+<p>git clone https://github.com/LazyVim/starter ~/.config/nvim</p>
+<p>rm -rf ~/.config/nvim/.git</p>
+<p>然后启动nvim</p>
+<p>当遇到错误：LazyVim nvim bug: module ‘lazy‘ not found</p>
+<p>lazyvim的issue中有类似的问题，问题出现的原因是git版本过旧不支持----filter=blob:none导致lazy.nvim安装失败，所以升级git就可以解决。可以在terminal输入：git
+--version来查看自己的版本</p>
+<p>git版本2.33.0开始就支持上面的git选项了</p>
+<p>wget <a
+href="https://github.com/git/git/archive/refs/tags/v2.43.0.tar.gz">https://github.com/git/git/archive/refs/tags/v2.43.0.tar.gz</a></p>
+<p>tar -zxvf v2.43.0.tar.gz #解压后得到文件夹git-2.43.0</p>
+<p>cd git-2.43.0</p>
+<p>make configure</p>
+<p>./configure --prefix=/home/myz/git-2.43.0 #指定安装目录</p>
+<p>make &amp;&amp; make install</p>
+<p>添加环境变量到.bashrc中：</p>
+<p>export PATH=/home/myz/git-2.43.0/bin:$PATH</p>
+<p>export GIT_EXEC_PATH=/home/myz/git-2.43.0/libexec/git-core</p>
+<p>然后git
+--version检查版本，如果还不对，可能是上面两行环境变量的位置放得不对</p>
