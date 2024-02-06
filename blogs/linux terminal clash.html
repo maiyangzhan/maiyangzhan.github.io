@@ -1,31 +1,69 @@
 
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="dark">
   <head>
-    <meta charset="UTF-8">
     <title>linux terminal clash</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      main {
+        max-width: 800px;
+        margin: auto;
+      }
+
+      main  img {
+        min-width: 80%;
+        max-width: 98%;
+        height: auto;
+        display: block;
+        margin: auto;
+      }
+
+      h1, h2, h3  {
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+      }
+      
+    </style>
   </head>
   <body>
-    <nav style="background-color: #333; overflow: hidden;">
-        <ul style="list-style-type: none; margin: 0; padding: 0;">
-            
-            <li style="float: left;"><a href="/blogs.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">blogs</a></li>
-            
-            <li style="float: left;"><a href="/about_me.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">about_me</a></li>
-            
-            <li style="float: left;"><a href="/index.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">index</a></li>
-            
-        </ul>
-    </nav>
-    <main style="padding: 0 50px;">
+
+
+    <nav  class="navbar navbar-expand-lg border-bottom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"> 
+          <img src="/lukamai.jpg" alt="logo" width="30" height="30"  class="rounded-circle">
+          lukamai
+        </a>
+          <ul  class="navbar-nav nav-pills me-auto " >
+              
+                
+                  <li class="nav-item "><a class="nav-link " href="/blogs.html" >Blogs</a></li>
+                
+              
+                
+                  <li class="nav-item "><a class="nav-link " href="/about_me.html" >About_me</a></li>
+                
+              
+                
+              
+          </ul>
+        </div>
+      </nav>
+
+
+    <main>
+      <div class="container mt-5 mb-10">
+        <article>
          
 <h2 id="布置环境">布置环境</h2>
 <p># 在家目录创建环境/home/myz/clash</p>
 <p>$ <strong>mkdir clash</strong></p>
 <p>$ <strong>cd clash</strong></p>
 <p># 下载clash包</p>
-<p>先在windows中进入网址下载<a
-href="https://down.clash.la/Clash/Core/Releases/clash-linux-amd64-v1.18.0.gz">https://down.clash.la/Clash/Core/Releases/clash-linux-amd64-v1.18.0.gz</a>
+<p>先在windows中进入网址下载<a href="https://down.clash.la/Clash/Core/Releases/clash-linux-amd64-v1.18.0.gz"><span data-custom-style="Hyperlink">https://down.clash.la/Clash/Core/Releases/clash-linux-amd64-v1.18.0.gz</span></a>
 ，然后传入linux中（因为linux好像连不上该网址）</p>
 <p>$ <strong>gzip -d clash-linux-amd64-v1.18.0.gz</strong></p>
 <p>$ <strong>mv clash-linux-amd64-v1.18.0 clash</strong></p>
@@ -35,8 +73,7 @@ href="https://down.clash.la/Clash/Core/Releases/clash-linux-amd64-v1.18.0.gz">ht
 <p># 生成默认配置</p>
 <p>$ <strong>./clash -d .</strong> # 默认配置</p>
 <p>输入该命令后会出现几行东西，然后就卡住了，这时候我认为其实是clash处于开启状态了，可以新开一个终端查看是否有如下文件：</p>
-<p><img src="linux terminal clash.html.media/media/image1.png"
-style="width:4.97917in;height:0.83333in" /></p>
+<p><img src="linux terminal clash.html.media/media/image1.png"/></p>
 <p>有的话表示默认配置已经创建完成了。</p>
 <p># 拉取机场配置，注意： 名称为：config.yaml</p>
 <p>我用的是nanoport，我直接在windows端的clash-profile中打开配置，上传到Linux上，要注意把名称改为config.yaml，然后覆盖掉默认配置中的config.yaml</p>
@@ -46,8 +83,9 @@ style="width:4.97917in;height:0.83333in" /></p>
 <h2 id="日常使用">日常使用</h2>
 <p>ctrl+c退出后应该就取消代理了，下面我们直接添加到环境变量中：</p>
 <ol type="1">
-<li><p><strong>vim
-~/..bashrc开始准备命令并把下面的写进入</strong></p></li>
+<li><div data-custom-style="List Paragraph">
+<p><strong>vim ~/..bashrc开始准备命令并把下面的写进入</strong></p>
+</div></li>
 </ol>
 <p>alias clash_start="screen -S clash /home/myz/clash/clash -d
 /home/myz/clash/"</p>
@@ -56,12 +94,18 @@ style="width:4.97917in;height:0.83333in" /></p>
 http_proxy=127.0.0.1:7890"</p>
 <p>alias proxy_off="unset http_proxy https_proxy"</p>
 <ol start="2" type="1">
-<li><p><strong>source ~/.bashrc 重新载入</strong></p></li>
-<li><p><strong>clash_start会进入screen 按 ctrl + a +
-d退出后台</strong></p></li>
-<li><p><strong>proxy_on开启代理</strong></p></li>
-<li><p><strong>curl
-https://www.youtube.com/会发现马上返回结果</strong></p></li>
+<li><div data-custom-style="List Paragraph">
+<p><strong>source ~/.bashrc 重新载入</strong></p>
+</div></li>
+<li><div data-custom-style="List Paragraph">
+<p><strong>clash_start会进入screen 按 ctrl + a + d退出后台</strong></p>
+</div></li>
+<li><div data-custom-style="List Paragraph">
+<p><strong>proxy_on开启代理</strong></p>
+</div></li>
+<li><div data-custom-style="List Paragraph">
+<p><strong>curl https://www.youtube.com/会发现马上返回结果</strong></p>
+</div></li>
 </ol>
 <h2 id="github加速">Github加速</h2>
 <p>先用git config
@@ -73,6 +117,8 @@ https://www.youtube.com/会发现马上返回结果</strong></p></li>
 <p>$ git config --global https.proxy 'https://127.0.0.1:7890'</p>
 
  
+      </article>
+      </div>
     </main>
   </body>
 </html>

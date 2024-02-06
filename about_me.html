@@ -1,33 +1,83 @@
 
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="dark">
   <head>
-    <meta charset="UTF-8">
     <title>about_me</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      main {
+        max-width: 800px;
+        margin: auto;
+      }
+
+      main  img {
+        min-width: 80%;
+        max-width: 98%;
+        height: auto;
+        display: block;
+        margin: auto;
+      }
+
+      h1, h2, h3  {
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+      }
+      
+    </style>
   </head>
   <body>
-    <nav style="background-color: #333; overflow: hidden;">
-        <ul style="list-style-type: none; margin: 0; padding: 0;">
-            
-            <li style="float: left;"><a href="/blogs.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">blogs</a></li>
-            
-            <li style="float: left;"><a href="/about_me.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">about_me</a></li>
-            
-            <li style="float: left;"><a href="/index.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">index</a></li>
-            
-        </ul>
-    </nav>
-    <main style="padding: 0 50px;">
+
+
+    <nav  class="navbar navbar-expand-lg border-bottom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"> 
+          <img src="/lukamai.jpg" alt="logo" width="30" height="30"  class="rounded-circle">
+          lukamai
+        </a>
+          <ul  class="navbar-nav nav-pills me-auto " >
+              
+                
+                  <li class="nav-item "><a class="nav-link " href="/blogs.html" >Blogs</a></li>
+                
+              
+                
+                  <li class="nav-item "><a class="nav-link active text-dark bg-light" href="/about_me.html" >About_me</a></li>
+                
+              
+                
+              
+          </ul>
+        </div>
+      </nav>
+
+
+    <main>
+      <div class="container mt-5 mb-10">
+        <article>
          
-<h1 id="about-me-luka-mai"><strong>About me – Luka Mai</strong></h1>
+<h1 id="about-me-luka-mai"><span data-custom-style="Strong"><strong>About me – Luka
+Mai</strong></span></h1>
 <ul>
-<li><p><strong>Profession:</strong> A graduate student of SYSU.</p></li>
-<li><p><strong>Research Fields:</strong> Compute in SRAM, AI
-Chips.</p></li>
-<li><p><strong>Others:</strong> A vimer. Struggle for money.</p></li>
+<li><div data-custom-style="List Paragraph">
+<p><strong>Profession:</strong> A graduate student of SYSU.</p>
+</div></li>
+<li><div data-custom-style="List Paragraph">
+<p><strong>Research Fields:</strong> Compute in SRAM, AI Chips.</p>
+</div></li>
+<li><div data-custom-style="List Paragraph">
+<p><strong>Hobbies:</strong> 、fitness…</p>
+</div></li>
+<li><div data-custom-style="List Paragraph">
+<p><strong>Others:</strong> A vimer. Struggle for money.</p>
+</div></li>
 </ul>
 
  
+      </article>
+      </div>
     </main>
   </body>
 </html>

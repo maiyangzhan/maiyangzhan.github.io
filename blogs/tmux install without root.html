@@ -1,29 +1,67 @@
 
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="dark">
   <head>
-    <meta charset="UTF-8">
     <title>tmux install without root</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      main {
+        max-width: 800px;
+        margin: auto;
+      }
+
+      main  img {
+        min-width: 80%;
+        max-width: 98%;
+        height: auto;
+        display: block;
+        margin: auto;
+      }
+
+      h1, h2, h3  {
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+      }
+      
+    </style>
   </head>
   <body>
-    <nav style="background-color: #333; overflow: hidden;">
-        <ul style="list-style-type: none; margin: 0; padding: 0;">
-            
-            <li style="float: left;"><a href="/blogs.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">blogs</a></li>
-            
-            <li style="float: left;"><a href="/about_me.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">about_me</a></li>
-            
-            <li style="float: left;"><a href="/index.html" style="display: block; color: white; text-align: center; padding: 20px 16px; text-decoration: none;">index</a></li>
-            
-        </ul>
-    </nav>
-    <main style="padding: 0 50px;">
+
+
+    <nav  class="navbar navbar-expand-lg border-bottom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"> 
+          <img src="/lukamai.jpg" alt="logo" width="30" height="30"  class="rounded-circle">
+          lukamai
+        </a>
+          <ul  class="navbar-nav nav-pills me-auto " >
+              
+                
+                  <li class="nav-item "><a class="nav-link " href="/blogs.html" >Blogs</a></li>
+                
+              
+                
+                  <li class="nav-item "><a class="nav-link " href="/about_me.html" >About_me</a></li>
+                
+              
+                
+              
+          </ul>
+        </div>
+      </nav>
+
+
+    <main>
+      <div class="container mt-5 mb-10">
+        <article>
          
 <h2 id="非root安装tmux">非root安装tmux</h2>
 <h3 id="步骤1">步骤1</h3>
 <p>下载tmux及其依赖软件：</p>
-<p>wget -c <a
-href="https://github.com/tmux/tmux/releases/tag/3.3a/tmux-3.3a.tar.gz">https://github.com/tmux/tmux/releases/tag/3.3a/tmux-3.3a.tar.gz</a></p>
+<p>wget -c <a href="https://github.com/tmux/tmux/releases/tag/3.3a/tmux-3.3a.tar.gz"><span data-custom-style="Hyperlink">https://github.com/tmux/tmux/releases/tag/3.3a/tmux-3.3a.tar.gz</span></a></p>
 <p>wget -c
 https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz</p>
 <p>wget -c https://ftp.gnu.org/gnu/ncurses/ncurses-6.2.tar.gz</p>
@@ -31,8 +69,7 @@ https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/lib
 <p>解压这三个压缩包</p>
 <p>tar -zxvf ***.tar.gz</p>
 <p>64服务器好像不支持解压wget到的压缩包，只能下载后传到服务器里。。。</p>
-<p><img src="tmux install without root.html.media/media/image1.png"
-style="width:3.62022in;height:0.75795in" /></p>
+<p><img src="tmux install without root.html.media/media/image1.png"/></p>
 <h3 id="步骤3">步骤3</h3>
 <p>分别源码安装</p>
 <p>cd libevent-2.1.12-stable/</p>
@@ -58,42 +95,250 @@ style="width:3.62022in;height:0.75795in" /></p>
 <p>在tmux下使用vim按ESC会有延迟，需要在~/.tmux.conf中增加一句：</p>
 <p>set -g escape-time 0</p>
 <h3 id="常用命令">常用命令 </h3>
-<p>1）新建会话，比如新创建一个会话以"ccc"命名</p>
-<p>[root@Centos6 ~]# tmux new -s ccc</p>
-<p>加上参数-d，表示在后台新建会话</p>
-<p>root@bobo:~# tmux new -s shibo -d</p>
-<p>root@bobo:~# tmux ls</p>
-<p>shibo: 1 windows (created Tue Oct 2 19:22:32 2018) [135x35]</p>
-<p>2）查看创建得所有会话</p>
-<p>[root@Centos6 ~]# tmux ls</p>
-<p>0: 1 windows (created Wed Aug 30 17:58:20 2017) [112x22](attached)
-#这里的attached表示该会话是当前会话</p>
-<p>aaa: 2 windows (created Wed Aug 30 16:54:33 2017) [112x22]</p>
-<p>ccc: 1 windows (created Wed Aug 30 17:01:05 2017) [112x22]</p>
-<p>3）登录一个已知会话。即从终端环境进入会话。</p>
-<p>第一个参数a也可以写成attach。后面的aaa是会话名称。</p>
-<p>[root@Centos6 ~]# tmux a -t aaa</p>
-<p>　　</p>
-<p>4）退出会话不是关闭：</p>
-<p>登到某一个会话后，先按键ctrl+b启动快捷键，再按d，这样就会退出该会话，但不会关闭会话。</p>
-<p>如果直接ctrl + d，就会在退出会话的通话也关闭了该会话！</p>
-<p>5）关闭会话（销毁会话）</p>
-<p>[root@Centos6 ~]# tmux ls</p>
-<p>aaa: 2 windows (created Wed Aug 30 16:54:33 2017) [112x22]</p>
-<p>bbb: 1 windows (created Wed Aug 30 19:02:09 2017) [112x22]</p>
-<p>[root@Centos6 ~]# tmux kill-session -t bbb</p>
-<p>[root@Centos6 ~]# tmux ls</p>
-<p>aaa: 2 windows (created Wed Aug 30 16:54:33 2017) [112x22]</p>
-<p>6）重命名会话</p>
-<p>[root@Centos6 ~]# tmux ls</p>
-<p>wangshibo: 1 windows (created Sun Sep 30 10:17:00 2018) [136x29]
-(attached)</p>
-<p>[root@Centos6 ~]# tmux rename -t wangshibo kevin</p>
-<p>[root@Centos6 ~]# tmux ls</p>
-<p>kevin: 1 windows (created Sun Sep 30 10:17:00 2018) [136x29]
-(attached)</p>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">1）新建会话，比如新创建一个会话以"ccc"命名</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">[root@Centos6 ~]# tmux new -s
+ccc</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">加上参数-d，表示在后台新建会话</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">root@bobo:~# tmux new -s shibo
+-d</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">root@bobo:~# tmux ls</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">shibo: 1 windows (created Tue Oct
+2 19:22:32 2018) [135x35]</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">2）查看创建得所有会话</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">[root@Centos6 ~]# tmux
+ls</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">0: 1 windows (created Wed Aug 30
+17:58:20 2017) [112x22](attached)
+#这里的attached表示该会话是当前会话</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">aaa: 2 windows (created Wed Aug
+30 16:54:33 2017) [112x22]</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">ccc: 1 windows (created Wed Aug
+30 17:01:05 2017) [112x22]</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">3）登录一个已知会话。即从终端环境进入会话。</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">第一个参数a也可以写成attach。后面的aaa是会话名称。</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">[root@Centos6 ~]# tmux a -t
+aaa</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">　　</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">4）退出会话不是关闭：</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">登到某一个会话后，先按键ctrl+b启动快捷键，再按d，这样就会退出该会话，但不会关闭会话。</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">如果直接ctrl +
+d，就会在退出会话的通话也关闭了该会话！</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">5）关闭会话（销毁会话）</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">[root@Centos6 ~]# tmux
+ls</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">aaa: 2 windows (created Wed Aug
+30 16:54:33 2017) [112x22]</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">bbb: 1 windows (created Wed Aug
+30 19:02:09 2017) [112x22]</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">[root@Centos6 ~]# tmux
+kill-session -t bbb</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">[root@Centos6 ~]# tmux
+ls</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">aaa: 2 windows (created Wed Aug
+30 16:54:33 2017) [112x22]</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">6）重命名会话</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">[root@Centos6 ~]# tmux
+ls</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">wangshibo: 1 windows (created Sun
+Sep 30 10:17:00 2018) [136x29] (attached)</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">[root@Centos6 ~]# tmux rename -t
+wangshibo kevin</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">[root@Centos6 ~]# tmux
+ls</span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code"></span></p>
+</div>
+<div data-custom-style="HTML Preformatted">
+<p><span data-custom-style="HTML Code">kevin: 1 windows (created Sun Sep
+30 10:17:00 2018) [136x29] (attached)</span></p>
+</div>
 
  
+      </article>
+      </div>
     </main>
   </body>
 </html>
