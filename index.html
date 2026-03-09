@@ -1,69 +1,154 @@
-
 <!DOCTYPE html>
 <html data-bs-theme="dark">
   <head>
-    <title>home</title>
+    <title>Luka Mai</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
       main {
         max-width: 800px;
         margin: auto;
       }
-
-      main  img {
-        min-width: 80%;
-        max-width: 98%;
+      main img {
+        max-width: 200px;
         height: auto;
         display: block;
         margin: auto;
       }
-
-      h1, h2, h3  {
+      h1, h2, h3 {
         margin-top: 1em;
         margin-bottom: 0.5em;
       }
-      
+      .social-links a {
+        font-size: 1.5rem;
+        margin: 0 10px;
+        color: var(--bs-body-color);
+        transition: color 0.3s;
+      }
+      .social-links a:hover {
+        color: #0d6efd;
+      }
+      .skill-tag {
+        background-color: #0d6efd20;
+        color: var(--bs-body-color);
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin: 3px;
+        display: inline-block;
+      }
+      .hero-section {
+        text-align: center;
+        padding: 40px 0;
+      }
+      .typing-text {
+        font-size: 1.2rem;
+        color: #6c757d;
+      }
+      .feature-card {
+        background: var(--bs-tertiary-bg);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 15px 0;
+      }
     </style>
   </head>
   <body>
-
-
-    <nav  class="navbar navbar-expand-lg border-bottom">
+    <nav class="navbar navbar-expand-lg border-bottom">
       <div class="container-fluid">
         <a class="navbar-brand" href="/"> 
-          <img src="/luka.jpg" alt="logo" width="30" height="30"  class="rounded-circle">
-          luka
+          <img src="/luka.jpg" alt="logo" width="30" height="30" class="rounded-circle">
+          Luka
         </a>
-          <ul  class="navbar-nav nav-pills me-auto " >
-              
-                
-                  <li class="nav-item "><a class="nav-link " href="/blogs.html" >Blogs</a></li>
-                
-              
-                
-                  <li class="nav-item "><a class="nav-link " href="/about_me.html" >About_me</a></li>
-                
-              
-                
-              
-          </ul>
-        </div>
-      </nav>
-
+        <ul class="navbar-nav nav-pills me-auto">
+          <li class="nav-item"><a class="nav-link" href="/blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about_me.html">About Me</a></li>
+        </ul>
+      </div>
+    </nav>
 
     <main>
-      <div class="container mt-5 mb-10">
-        <article>
-         
-<h1 id="hello-there">Hello There ~</h1>
-<p><img alt="C:\Users\dm\Documents\WeChat Files\wxid_7ps2of99j6t432\FileStorage\Temp\fc6ae6576596aa20869ca1d9f9b8a47.jpg" src="index.html.media/media/image1.jpeg"/></p>
+      <div class="container mt-5">
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <img src="/luka.jpg" alt="Luka Mai" class="rounded-circle mb-4" style="width: 180px; height: 180px; object-fit: cover;">
+          <h1 class="display-4">Luka Mai</h1>
+          <p class="typing-text">
+            <span id="typed"></span>
+          </p>
+          
+          <!-- Social Links -->
+          <div class="social-links mt-4">
+            <a href="https://github.com/maiyangzhan" target="_blank" title="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="mailto:maiyangzhan@outlook.com" title="Email">
+              <i class="bi bi-envelope"></i>
+            </a>
+            <a href="https://maiyangzhan.github.io" target="_blank" title="Website">
+              <i class="bi bi-globe"></i>
+            </a>
+          </div>
+        </div>
 
- 
-      </article>
+        <!-- About Short -->
+        <div class="feature-card">
+          <h3><i class="bi bi-person-badge"></i> About Me</h3>
+          <p>Graduate student at <strong>SYSU</strong> (Sun Yat-sen University). Researching <strong>Compute in SRAM</strong> and <strong>AI Chips</strong>.</p>
+          <p>A vimer who loves basketball and fitness. Always learning, always building.</p>
+        </div>
+
+        <!-- Skills -->
+        <div class="feature-card">
+          <h3><i class="bi bi-code-slash"></i> Skills</h3>
+          <div class="skill-tag"><i class="bi bi-cpu"></i> AI Chips</div>
+          <div class="skill-tag"><i class="bi bi-memory"></i> Compute in SRAM</div>
+          <div class="skill-tag"><i class="bi bi-filetype-py"></i> Python</div>
+          <div class="skill-tag"><i class="bi bi-filetype-v"></i> Verilog</div>
+          <div class="skill-tag"><i class="bi bi-terminal"></i> Vim</div>
+          <div class="skill-tag"><i class="bi bi-git"></i> Git</div>
+          <div class="skill-tag"><i class="bi bi-linux"></i> Linux</div>
+        </div>
+
+        <!-- What I'm Doing -->
+        <div class="feature-card">
+          <h3><i class="bi bi-lightbulb"></i> What I'm Doing</h3>
+          <ul>
+            <li>Researching <strong>SRAM-based computing</strong> for AI acceleration</li>
+            <li>Building <strong>energy-efficient AI chips</strong></li>
+            <li>Writing technical blogs about hardware & AI</li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="feature-card">
+          <h3><i class="bi bi-chat-dots"></i> Get in Touch</h3>
+          <p>Feel free to reach out for collaboration or just to say hi!</p>
+          <p><i class="bi bi-envelope"></i> maiyangzhan@outlook.com</p>
+        </div>
       </div>
+
+      <footer class="text-center mt-5 mb-4 text-muted">
+        <small>&copy; 2024 Luka Mai. Built with curiosity ⚡</small>
+      </footer>
     </main>
+
+    <script>
+      // Simple typing effect
+      const text = "Graduate Student | AI Chip Researcher | Vimmer";
+      const typed = document.getElementById('typed');
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          typed.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(type, 80);
+        }
+      }
+      type();
+    </script>
   </body>
 </html>
