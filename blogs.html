@@ -7,73 +7,169 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
     <style>
       main {
         max-width: 900px;
         margin: auto;
       }
       h1, h2, h3 {
-        margin-top: 1em;
+        margin-top: 1.5em;
         margin-bottom: 0.5em;
       }
       .blog-card {
         background: var(--bs-tertiary-bg);
         border: 1px solid var(--bs-border-color);
-        border-radius: 12px;
-        padding: 20px;
+        border-radius: 16px;
+        padding: 24px;
         margin-bottom: 20px;
-        transition: transform 0.3s, box-shadow 0.3s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         text-decoration: none;
         display: block;
+        position: relative;
+        overflow: hidden;
+      }
+      .blog-card::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 4px;
+        background: linear-gradient(180deg, #0d6efd, #6610f2);
+        opacity: 0;
+        transition: opacity 0.3s;
       }
       .blog-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 4px 20px rgba(13, 110, 253, 0.15);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(13, 110, 253, 0.2);
         border-color: #0d6efd;
+      }
+      .blog-card:hover::before {
+        opacity: 1;
       }
       .blog-card h3 {
         color: var(--bs-body-color);
         margin-top: 0;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+        font-weight: 600;
       }
       .blog-card p {
-        color: #6c757d;
+        color: #8b949e;
         margin-bottom: 0;
+        line-height: 1.6;
+      }
+      .blog-card .description {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
       .blog-meta {
         display: flex;
-        gap: 15px;
+        gap: 20px;
         font-size: 0.85rem;
-        color: #6c757d;
-        margin-top: 10px;
+        color: #8b949e;
+        margin-top: 16px;
+        flex-wrap: wrap;
       }
       .blog-meta span {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 6px;
       }
       .tag {
-        background: #0d6efd20;
-        padding: 3px 10px;
-        border-radius: 15px;
+        background: linear-gradient(135deg, #0d6efd20, #6610f220);
+        padding: 4px 12px;
+        border-radius: 20px;
         font-size: 0.8rem;
-        margin-right: 5px;
+        margin-right: 6px;
+        border: 1px solid rgba(13, 110, 253, 0.2);
+        transition: all 0.2s;
+      }
+      .tag:hover {
+        background: linear-gradient(135deg, #0d6efd40, #6610f240);
+        transform: scale(1.05);
       }
       .hero-section {
         text-align: center;
+        padding: 60px 0 40px;
+      }
+      .hero-section h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #0d6efd, #6610f2, #6f42c1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero-section p {
+        font-size: 1.2rem;
+        color: #8b949e;
+      }
+      .stats-row {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 30px;
+        padding: 20px;
+        background: var(--bs-tertiary-bg);
+        border-radius: 12px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .stats-row .stat-item {
+        text-align: center;
+      }
+      .stats-row .stat-number {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #0d6efd;
+      }
+      .stats-row .stat-label {
+        font-size: 0.85rem;
+        color: #8b949e;
+      }
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0d6efd, #6610f2);
+        color: white;
+        border: none;
+        cursor: pointer;
+        opacity: 0;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
+        z-index: 1000;
+      }
+      .back-to-top.visible {
+        opacity: 1;
+      }
+      .back-to-top:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(13, 110, 253, 0.5);
+      }
+      footer {
         padding: 40px 0;
+        border-top: 1px solid var(--bs-border-color);
+        margin-top: 60px;
       }
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg border-bottom">
+    <nav class="navbar navbar-expand-lg border-bottom sticky-top" style="background: var(--bs-body-bg);">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/"> 
-          <img src="/luka.jpg" alt="logo" width="30" height="30" class="rounded-circle">
-          Luka
+        <a class="navbar-brand d-flex align-items-center" href="/"> 
+          <img src="/luka.jpg" alt="logo" width="32" height="32" class="rounded-circle me-2">
+          <span class="fw-bold">Luka</span>
         </a>
-        <ul class="navbar-nav nav-pills me-auto">
-          <li class="nav-item"><a class="nav-link active text-dark bg-light" href="/blogs.html">Blogs</a></li>
+        <ul class="navbar-nav nav-pills">
+          <li class="nav-item"><a class="nav-link active bg-gradient" href="/blogs.html">Blogs</a></li>
           <li class="nav-item"><a class="nav-link" href="/about_me.html">About Me</a></li>
         </ul>
       </div>
@@ -81,46 +177,94 @@
 
     <main>
       <div class="hero-section">
-        <h1 class="display-4"><i class="bi bi-journal-code"></i> Blogs</h1>
-        <p class="text-muted">记录学习历程，分享技术心得</p>
+        <h1><i class="bi bi-journal-code me-2"></i> Blogs</h1>
+        <p>记录学习历程，分享技术心得 ✍️</p>
+        
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">文章</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">Linux</div>
+            <div class="stat-label">主要标签</div>
+          </div>
+        </div>
       </div>
 
       <!-- Blog Cards -->
       <a href="/blogs/tmux install without root.html" class="blog-card">
-        <h3><i class="bi bi-terminal"></i> tmux install without root</h3>
-        <p>如何在没有 root 权限的情况下安装配置 tmux</p>
+        <h3><i class="bi bi-terminal text-success me-2"></i> tmux install without root</h3>
+        <p class="description">详细介绍如何在没有 root 权限的情况下从源码编译安装 tmux，包含所有依赖库的安装步骤和配置方法。</p>
         <div class="blog-meta">
           <span><i class="bi bi-calendar3"></i> 2024-02-06</span>
-          <span><i class="bi bi-tag"></i> <span class="tag">Linux</span><span class="tag">Terminal</span></span>
+          <span><i class="bi bi-clock"></i> 5 min</span>
+          <span><i class="bi bi-tag"></i> 
+            <span class="tag">Linux</span>
+            <span class="tag">Terminal</span>
+          </span>
         </div>
       </a>
 
       <a href="/blogs/neovim install.html" class="blog-card">
-        <h3><i class="bi bi-code-square"></i> neovim install</h3>
-        <p>Neovim 安装配置指南</p>
+        <h3><i class="bi bi-code-square text-purple me-2" style="color: #9c27b0;"></i> neovim install</h3>
+        <p class="description">Neovim + LazyVim 完整安装配置指南，解决 Git 版本过旧导致的插件安装问题。</p>
         <div class="blog-meta">
           <span><i class="bi bi-calendar3"></i> 2024-02-06</span>
-          <span><i class="bi bi-tag"></i> <span class="tag">Neovim</span><span class="tag">Editor</span></span>
+          <span><i class="bi bi-clock"></i> 3 min</span>
+          <span><i class="bi bi-tag"></i> 
+            <span class="tag">Neovim</span>
+            <span class="tag">Editor</span>
+            <span class="tag">Vim</span>
+          </span>
         </div>
       </a>
 
       <a href="/blogs/linux terminal clash.html" class="blog-card">
-        <h3><i class="bi bi-cloud"></i> linux terminal clash</h3>
-        <p>Linux 终端 Clash 配置教程</p>
+        <h3><i class="bi bi-cloud text-info me-2"></i> linux terminal clash</h3>
+        <p class="description">Linux 终端 Clash 配置教程，配置终端代理实现 Git 加速和科学上网。</p>
         <div class="blog-meta">
           <span><i class="bi bi-calendar3"></i> 2024-02-06</span>
-          <span><i class="bi bi-tag"></i> <span class="tag">Linux</span><span class="tag">Proxy</span></span>
+          <span><i class="bi bi-clock"></i> 4 min</span>
+          <span><i class="bi bi-tag"></i> 
+            <span class="tag">Linux</span>
+            <span class="tag">Proxy</span>
+            <span class="tag">Clash</span>
+          </span>
         </div>
       </a>
 
       <!-- More blogs coming soon -->
-      <div class="text-center mt-5 text-muted">
-        <p><i class="bi bi-pencil"></i> 更多博客正在整理中...</p>
+      <div class="text-center mt-5 py-5" style="background: var(--bs-tertiary-bg); border-radius: 16px; border: 1px dashed var(--bs-border-color);">
+        <p class="mb-2"><i class="bi bi-pencil fs-4"></i></p>
+        <p class="text-muted">更多博客正在整理中... 🚧</p>
       </div>
     </main>
 
-    <footer class="text-center mt-5 mb-4 text-muted">
-      <small>&copy; 2024 Luka Mai. Write to learn ✍️</small>
+    <footer class="text-center">
+      <p class="text-muted mb-2">
+        <i class="bi bi-heart-fill text-danger"></i> Thanks for visiting
+      </p>
+      <small class="text-muted">&copy; 2024 Luka Mai. Write to learn ✍️</small>
     </footer>
+
+    <button class="back-to-top" id="backToTop" title="返回顶部">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script>
+      // Back to top button
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
   </body>
 </html>

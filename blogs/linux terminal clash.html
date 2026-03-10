@@ -1,124 +1,375 @@
-
 <!DOCTYPE html>
 <html data-bs-theme="dark">
   <head>
-    <title>linux terminal clash</title>
+    <title>linux terminal clash - Luka's Blog</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
     <style>
+      :root {
+        --primary-color: #0d6efd;
+        --accent-color: #6610f2;
+      }
       main {
         max-width: 800px;
         margin: auto;
+        padding: 0 20px;
       }
-
-      main  img {
-        min-width: 80%;
-        max-width: 98%;
-        height: auto;
-        display: block;
-        margin: auto;
-      }
-
-      h1, h2, h3  {
-        margin-top: 1em;
+      h1, h2, h3 {
+        margin-top: 1.5em;
         margin-bottom: 0.5em;
       }
-      
+      h1 {
+        font-size: 2rem;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      h2 {
+        border-bottom: 2px solid var(--bs-border-color);
+        padding-bottom: 0.3em;
+      }
+      /* Code block styling */
+      pre {
+        background: #1e1e1e !important;
+        border-radius: 12px;
+        padding: 20px !important;
+        overflow-x: auto;
+        border: 1px solid var(--bs-border-color);
+        margin: 1.5em 0;
+      }
+      code {
+        font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 0.9em;
+      }
+      /* Inline code */
+      p code, li code {
+        background: var(--bs-tertiary-bg);
+        padding: 2px 8px;
+        border-radius: 6px;
+        color: #e83e8c;
+        font-size: 0.9em;
+        border: 1px solid var(--bs-border-color);
+      }
+      /* Command styling */
+      .command {
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+        border-left: 4px solid var(--primary-color);
+        padding: 16px 20px;
+        border-radius: 0 12px 12px 0;
+        margin: 1em 0;
+        font-family: 'Fira Code', monospace;
+        overflow-x: auto;
+      }
+      .command::before {
+        content: '$ ';
+        color: #4ade80;
+        font-weight: bold;
+      }
+      .command strong {
+        color: #fbbf24;
+      }
+      /* Links */
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+        border-bottom: 1px dashed var(--primary-color);
+        transition: all 0.2s;
+      }
+      a:hover {
+        border-bottom-style: solid;
+      }
+      /* Article styling */
+      article {
+        line-height: 1.8;
+      }
+      article p {
+        margin-bottom: 1.2em;
+      }
+      article ul, article ol {
+        margin-bottom: 1.2em;
+        padding-left: 1.5em;
+      }
+      article li {
+        margin-bottom: 0.5em;
+      }
+      /* Numbered steps */
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        border-radius: 50%;
+        color: white;
+        font-weight: bold;
+        font-size: 0.85rem;
+        margin-right: 10px;
+      }
+      /* Navigation */
+      .nav-header {
+        position: sticky;
+        top: 0;
+        background: var(--bs-body-bg);
+        z-index: 100;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--bs-border-color);
+        margin: 0 -20px;
+        padding: 0 20px;
+      }
+      /* Back to top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+        border: none;
+        cursor: pointer;
+        opacity: 0;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
+        z-index: 1000;
+      }
+      .back-to-top.visible {
+        opacity: 1;
+      }
+      /* Reading progress */
+      .reading-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        z-index: 1001;
+        transition: width 0.1s;
+      }
+      /* Article meta */
+      .article-meta {
+        display: flex;
+        gap: 20px;
+        color: #8b949e;
+        font-size: 0.9rem;
+        margin-bottom: 2em;
+        padding: 1em;
+        background: var(--bs-tertiary-bg);
+        border-radius: 12px;
+      }
+      .article-meta span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      /* Table of contents */
+      .toc {
+        background: var(--bs-tertiary-bg);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 2em;
+        border: 1px solid var(--bs-border-color);
+      }
+      .toc h4 {
+        margin-top: 0;
+        margin-bottom: 1em;
+        font-size: 1rem;
+        color: #8b949e;
+      }
+      .toc ul {
+        margin: 0;
+        padding-left: 1.2em;
+      }
+      .toc a {
+        border: none;
+        color: var(--bs-body-color);
+        font-size: 0.9rem;
+      }
+      .toc a:hover {
+        color: var(--primary-color);
+      }
+      /* Alert boxes */
+      .alert-info {
+        background: rgba(13, 110, 253, 0.1);
+        border: 1px solid rgba(13, 110, 253, 0.3);
+        border-radius: 12px;
+      }
+      /* Config file */
+      .config-file {
+        background: #1e1e1e;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 1em 0;
+      }
+      .config-file .filename {
+        color: #fbbf24;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        font-family: monospace;
+      }
     </style>
   </head>
   <body>
+    <div class="reading-progress" id="progressBar"></div>
 
-
-    <nav  class="navbar navbar-expand-lg border-bottom">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/"> 
-          <img src="/luka.jpg" alt="logo" width="30" height="30"  class="rounded-circle">
-          luka
+    <nav class="nav-header py-3">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+        <a class="navbar-brand d-flex align-items-center" href="/"> 
+          <img src="/luka.jpg" alt="logo" width="28" height="28" class="rounded-circle me-2">
+          <span class="fw-bold">Luka</span>
         </a>
-          <ul  class="navbar-nav nav-pills me-auto " >
-              
-                
-                  <li class="nav-item "><a class="nav-link " href="/blogs.html" >Blogs</a></li>
-                
-              
-                
-                  <li class="nav-item "><a class="nav-link " href="/about_me.html" >About_me</a></li>
-                
-              
-                
-              
-          </ul>
-        </div>
-      </nav>
-
+        <ul class="navbar-nav nav-pills">
+          <li class="nav-item"><a class="nav-link" href="/blogs.html"><i class="bi bi-arrow-left me-1"></i> 返回博客</a></li>
+        </ul>
+      </div>
+    </nav>
 
     <main>
-      <div class="container mt-5 mb-10">
-        <article>
-         
-<h2 id="布置环境">布置环境</h2>
-<p># 在家目录创建环境/home/myz/clash</p>
-<p>$ <strong>mkdir clash</strong></p>
-<p>$ <strong>cd clash</strong></p>
-<p># 下载clash包</p>
-<p>先在windows中进入网址下载<a href="https://down.clash.la/Clash/Core/Releases/clash-linux-amd64-v1.18.0.gz"><span data-custom-style="Hyperlink">https://down.clash.la/Clash/Core/Releases/clash-linux-amd64-v1.18.0.gz</span></a>
-，然后传入linux中（因为linux好像连不上该网址）</p>
-<p>$ <strong>gzip -d clash-linux-amd64-v1.18.0.gz</strong></p>
-<p>$ <strong>mv clash-linux-amd64-v1.18.0 clash</strong></p>
-<p># 这里clash为二进制可以运行文件了</p>
-<p>$ <strong>chmod 755 clash</strong></p>
-<h2 id="传入配置">传入配置</h2>
-<p># 生成默认配置</p>
-<p>$ <strong>./clash -d .</strong> # 默认配置</p>
-<p>输入该命令后会出现几行东西，然后就卡住了，这时候我认为其实是clash处于开启状态了，可以新开一个终端查看是否有如下文件：</p>
-<p><img src="linux terminal clash.html.media/media/image1.png"/></p>
-<p>有的话表示默认配置已经创建完成了。</p>
-<p># 拉取机场配置，注意： 名称为：config.yaml</p>
-<p>我用的是nanoport，我直接在windows端的clash-profile中打开配置，上传到Linux上，要注意把名称改为config.yaml，然后覆盖掉默认配置中的config.yaml</p>
-<p>$ <strong>wget xxxx</strong> # 要么拉下来 要么自己拷贝上来</p>
-<p>$ ./clash -d . #
-就开始加载你的配置了，同样会卡住，应该就是指正在运行了，ctrl+c退出</p>
-<h2 id="日常使用">日常使用</h2>
-<p>ctrl+c退出后应该就取消代理了，下面我们直接添加到环境变量中：</p>
-<ol type="1">
-<li><div data-custom-style="List Paragraph">
-<p><strong>vim ~/..bashrc开始准备命令并把下面的写进入</strong></p>
-</div></li>
-</ol>
-<p>alias clash_start="screen -S clash /home/myz/clash/clash -d
-/home/myz/clash/"</p>
-<p>alias clash_stop="pkill clash"</p>
-<p>alias proxy_on="export https_proxy=127.0.0.1:7890 &amp;&amp; export
-http_proxy=127.0.0.1:7890"</p>
-<p>alias proxy_off="unset http_proxy https_proxy"</p>
-<ol start="2" type="1">
-<li><div data-custom-style="List Paragraph">
-<p><strong>source ~/.bashrc 重新载入</strong></p>
-</div></li>
-<li><div data-custom-style="List Paragraph">
-<p><strong>clash_start会进入screen 按 ctrl + a + d退出后台</strong></p>
-</div></li>
-<li><div data-custom-style="List Paragraph">
-<p><strong>proxy_on开启代理</strong></p>
-</div></li>
-<li><div data-custom-style="List Paragraph">
-<p><strong>curl https://www.youtube.com/会发现马上返回结果</strong></p>
-</div></li>
-</ol>
-<h2 id="github加速">Github加速</h2>
-<p>先用git config
-–list查看自己的git是否已有配置，如果有了可以先删掉：</p>
-<p>$ git config --global --unset user.name</p>
-<p>$ git config --global --edit #打开编辑器删除</p>
-<p>然后输入下面两条配置成功</p>
-<p>$ git config --global http.proxy 'http://127.0.0.1:7890'</p>
-<p>$ git config --global https.proxy 'https://127.0.0.1:7890'</p>
+      <article class="py-4">
+        <h1><i class="bi bi-cloud me-2 text-info"></i> linux terminal clash</h1>
+        
+        <div class="article-meta">
+          <span><i class="bi bi-calendar3"></i> 2024-02-06</span>
+          <span><i class="bi bi-clock"></i> 4 min</span>
+          <span><i class="bi bi-tag"></i> Linux, Proxy, Clash</span>
+        </div>
 
- 
+        <div class="toc">
+          <h4><i class="bi bi-list-ul me-2"></i>目录</h4>
+          <ul>
+            <li><a href="#布置环境">布置环境</a></li>
+            <li><a href="#传入配置">传入配置</a></li>
+            <li><a href="#日常使用">日常使用</a></li>
+            <li><a href="#github加速">GitHub 加速</a></li>
+          </ul>
+        </div>
+
+        <h2 id="布置环境"><i class="bi bi-folder-plus me-2"></i>布置环境</h2>
+        
+        <div class="command">mkdir clash</div>
+        <div class="command">cd clash</div>
+        
+        <h3>下载 clash 包</h3>
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          先在 Windows 中进入网址下载 clash-linux-amd64-v1.18.0.gz，然后传入 Linux 中（因为 Linux 可能连不上该网址）。
+        </div>
+        
+        <div class="command">gzip -d clash-linux-amd64-v1.18.0.gz</div>
+        <div class="command">mv clash-linux-amd64-v1.18.0 clash</div>
+        <div class="command">chmod 755 clash</div>
+
+        <h2 id="传入配置"><i class="bi bi-file-earmark-arrow-up me-2"></i>传入配置</h2>
+        
+        <h3>生成默认配置</h3>
+        <div class="command">./clash -d .</div>
+        
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          输入该命令后会出现几行东西，然后会卡住。实际上 Clash 已经在运行了，可以新开一个终端查看是否生成了配置文件。
+        </div>
+
+        <h3>导入机场配置</h3>
+        <p>拉取机场配置，注意文件名称必须为 <code>config.yaml</code>：</p>
+        <ul>
+          <li>在 Windows 端的 Clash for Windows 中打开「配置」</li>
+          <li>上传配置到 Linux</li>
+          <li>将名称改为 <code>config.yaml</code>，覆盖默认配置</li>
+        </ul>
+        
+        <div class="command">wget xxxx</div>
+        <div class="command">./clash -d .</div>
+
+        <h2 id="日常使用"><i class="bi bi-play-circle me-2"></i>日常使用</h2>
+        
+        <p>添加别名到 <code>~/.bashrc</code> 中：</p>
+        
+        <div class="config-file">
+          <div class="filename">~/.bashrc</div>
+          <pre><code class="language-bash"># Clash aliases
+alias clash_start="screen -S clash /home/myz/clash/clash -d /home/myz/clash/"
+alias clash_stop="pkill clash"
+alias proxy_on="export https_proxy=127.0.0.1:7890 && export http_proxy=127.0.0.1:7890"
+alias proxy_off="unset http_proxy https_proxy"</code></pre>
+        </div>
+
+        <h3>使用步骤</h3>
+        <ol>
+          <li>
+            <span class="step-number">1</span>
+            <strong>重新载入配置</strong>
+            <div class="command">source ~/.bashrc</div>
+          </li>
+          <li>
+            <span class="step-number">2</span>
+            <strong>启动 Clash</strong>
+            <div class="command">clash_start</div>
+            <p>会进入 screen，按 <code>Ctrl + a + d</code> 退出后台</p>
+          </li>
+          <li>
+            <span class="step-number">3</span>
+            <strong>开启代理</strong>
+            <div class="command">proxy_on</div>
+          </li>
+          <li>
+            <span class="step-number">4</span>
+            <strong>测试连接</strong>
+            <div class="command">curl https://www.youtube.com/</div>
+          </li>
+        </ol>
+
+        <h2 id="github加速"><i class="bi bi-github me-2"></i>GitHub 加速</h2>
+        
+        <p>先用 <code>git config --list</code> 查看是否已有配置：</p>
+        <div class="command">git config --list</div>
+        
+        <p>如果有配置，可以先删除：</p>
+        <div class="command">git config --global --unset user.name</div>
+        <div class="command">git config --global --edit</div>
+        
+        <p>然后配置代理：</p>
+        <div class="command">git config --global http.proxy 'http://127.0.0.1:7890'</div>
+        <div class="command">git config --global https.proxy 'https://127.0.0.1:7890'</div>
+
+        <hr class="my-4">
+        <p class="text-muted text-center">
+          <i class="bi bi-heart-fill text-danger"></i> 感谢阅读
+        </p>
       </article>
-      </div>
     </main>
+
+    <button class="back-to-top" id="backToTop" title="返回顶部">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script>
+      // Reading progress bar
+      window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progressBar').style.width = scrolled + '%';
+      });
+
+      // Back to top button
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
   </body>
 </html>
