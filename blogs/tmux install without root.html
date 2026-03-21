@@ -10,104 +10,178 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
     <style>
       :root {
-        --primary-color: #0d6efd;
-        --accent-color: #6610f2;
+        --bg-primary: #0a0a1a;
+        --bg-secondary: #1a1a3a;
+        --color-primary: #0d6efd;
+        --color-purple: #6610f2;
+        --color-purple-accent: #9c27b0;
+        --color-green: #10b981;
+        --color-orange: #f59e0b;
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.6);
+        --border-color: rgba(255, 255, 255, 0.1);
+        --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
+
+      body {
+        background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+        min-height: 100vh;
+        color: var(--text-primary);
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: rgba(10, 10, 26, 0.8) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-color) !important;
+        padding: 12px 0;
+      }
+
+      .navbar-brand .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-purple));
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        font-weight: 700;
+        font-size: 14px;
+        color: white;
+        box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+      }
+
+      .navbar-brand {
+        color: var(--text-primary) !important;
+        font-weight: 600;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-nav .nav-link {
+        color: var(--text-secondary) !important;
+        font-weight: 500;
+        padding: 8px 16px !important;
+        border-radius: 8px;
+        transition: var(--transition);
+        margin: 0 4px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: var(--text-primary) !important;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .navbar-nav .nav-link.active {
+        color: var(--text-primary) !important;
+        background: linear-gradient(135deg, rgba(13, 110, 253, 0.2), rgba(102, 16, 242, 0.2)) !important;
+        border: 1px solid rgba(13, 110, 253, 0.3);
+      }
+
       main {
-        max-width: 800px;
+        max-width: 900px;
         margin: auto;
         padding: 0 20px;
       }
+
       h1, h2, h3 {
         margin-top: 1.5em;
         margin-bottom: 0.5em;
       }
+
       h1 {
         font-size: 2rem;
-        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        background: linear-gradient(135deg, var(--color-primary), var(--color-purple));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
+
       h2 {
-        border-bottom: 2px solid var(--bs-border-color);
+        border-bottom: 2px solid var(--border-color);
         padding-bottom: 0.3em;
       }
+
       /* Code block styling */
       pre {
         background: #1e1e1e !important;
         border-radius: 12px;
         padding: 20px !important;
         overflow-x: auto;
-        border: 1px solid var(--bs-border-color);
+        border: 1px solid var(--border-color);
         margin: 1.5em 0;
       }
+
       code {
         font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
         font-size: 0.9em;
       }
+
       /* Inline code */
       p code, li code {
-        background: var(--bs-tertiary-bg);
+        background: rgba(255, 255, 255, 0.05);
         padding: 2px 8px;
         border-radius: 6px;
         color: #e83e8c;
         font-size: 0.9em;
-        border: 1px solid var(--bs-border-color);
+        border: 1px solid var(--border-color);
       }
+
       /* Command styling */
       .command {
         background: linear-gradient(135deg, #1a1a2e, #16213e);
-        border-left: 4px solid var(--primary-color);
+        border-left: 4px solid var(--color-primary);
         padding: 16px 20px;
         border-radius: 0 12px 12px 0;
         margin: 1em 0;
         font-family: 'Fira Code', monospace;
         overflow-x: auto;
       }
+
       .command::before {
         content: '$ ';
         color: #4ade80;
         font-weight: bold;
       }
+
       .command strong {
         color: #fbbf24;
       }
+
       /* Links */
       a {
-        color: var(--primary-color);
+        color: var(--color-primary);
         text-decoration: none;
-        border-bottom: 1px dashed var(--primary-color);
+        border-bottom: 1px dashed var(--color-primary);
         transition: all 0.2s;
       }
+
       a:hover {
         border-bottom-style: solid;
       }
+
       /* Article styling */
       article {
         line-height: 1.8;
       }
+
       article p {
         margin-bottom: 1.2em;
       }
+
       article ul, article ol {
         margin-bottom: 1.2em;
         padding-left: 1.5em;
       }
+
       article li {
         margin-bottom: 0.5em;
       }
-      /* Navigation */
-      .nav-header {
-        position: sticky;
-        top: 0;
-        background: var(--bs-body-bg);
-        z-index: 100;
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--bs-border-color);
-        margin: 0 -20px;
-        padding: 0 20px;
-      }
+
       /* Back to top */
       .back-to-top {
         position: fixed;
@@ -116,7 +190,7 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        background: linear-gradient(135deg, var(--color-primary), var(--color-purple));
         color: white;
         border: none;
         cursor: pointer;
@@ -125,75 +199,116 @@
         box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
         z-index: 1000;
       }
+
       .back-to-top.visible {
         opacity: 1;
       }
+
       /* Reading progress */
       .reading-progress {
         position: fixed;
         top: 0;
         left: 0;
         height: 3px;
-        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        background: linear-gradient(90deg, var(--color-primary), var(--color-purple));
         z-index: 1001;
         transition: width 0.1s;
       }
+
       /* Article meta */
       .article-meta {
         display: flex;
         gap: 20px;
-        color: #8b949e;
+        color: var(--text-secondary);
         font-size: 0.9rem;
         margin-bottom: 2em;
         padding: 1em;
-        background: var(--bs-tertiary-bg);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
         border-radius: 12px;
       }
+
       .article-meta span {
         display: flex;
         align-items: center;
         gap: 6px;
       }
+
       /* Table of contents */
       .toc {
-        background: var(--bs-tertiary-bg);
+        background: rgba(255, 255, 255, 0.03);
         border-radius: 12px;
         padding: 20px;
         margin-bottom: 2em;
-        border: 1px solid var(--bs-border-color);
+        border: 1px solid var(--border-color);
       }
+
       .toc h4 {
         margin-top: 0;
         margin-bottom: 1em;
         font-size: 1rem;
-        color: #8b949e;
+        color: var(--text-secondary);
       }
+
       .toc ul {
         margin: 0;
         padding-left: 1.2em;
       }
+
       .toc a {
         border: none;
-        color: var(--bs-body-color);
+        color: var(--text-primary);
         font-size: 0.9rem;
       }
+
       .toc a:hover {
-        color: var(--primary-color);
+        color: var(--color-primary);
+      }
+
+      /* Alert boxes */
+      .alert-info {
+        background: rgba(13, 110, 253, 0.1);
+        border: 1px solid rgba(13, 110, 253, 0.3);
+        border-radius: 12px;
+      }
+
+      .alert-warning {
+        background: rgba(255, 193, 7, 0.1);
+        border: 1px solid rgba(255, 193, 7, 0.3);
+        border-radius: 12px;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 40px 0;
+        color: var(--text-secondary);
+        border-top: 1px solid var(--border-color);
+        margin-top: 60px;
+      }
+
+      footer small {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
       }
     </style>
   </head>
   <body>
     <div class="reading-progress" id="progressBar"></div>
 
-    <nav class="nav-header py-3">
-      <div class="container-fluid d-flex justify-content-between align-items-center">
-        <a class="navbar-brand d-flex align-items-center" href="/"> 
-          <img src="/luka.jpg" alt="logo" width="28" height="28" class="rounded-circle me-2">
-          <span class="fw-bold">Luka</span>
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <span class="logo-icon">LM</span>
+          Luka
         </a>
-        <ul class="navbar-nav nav-pills">
-          <li class="nav-item"><a class="nav-link" href="/blogs.html"><i class="bi bi-arrow-left me-1"></i> 返回博客</a></li>
-        </ul>
+        <div class="navbar-nav">
+          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/blogs.html">Blogs</a>
+          <a class="nav-link" href="/about_me.html">About</a>
+        </div>
       </div>
     </nav>
 
@@ -299,6 +414,14 @@
     <button class="back-to-top" id="backToTop" title="返回顶部">
       <i class="bi bi-arrow-up"></i>
     </button>
+
+    <!-- Footer -->
+    <footer>
+      <small>
+        <i class="bi bi-lightning-charge-fill text-warning"></i>
+        &copy; 2026 Luka Mai. Built with curiosity
+      </small>
+    </footer>
 
     <script>
       // Reading progress bar
