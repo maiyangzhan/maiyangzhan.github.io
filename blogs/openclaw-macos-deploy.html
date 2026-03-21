@@ -7,8 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
-    <style>
+        <style>
       :root {
         --bg-primary: #0a0a1a;
         --bg-secondary: #1a1a3a;
@@ -256,12 +255,16 @@
         background: rgba(13, 110, 253, 0.1);
         border: 1px solid rgba(13, 110, 253, 0.3);
         border-radius: 12px;
+        padding: 15px 20px;
+        margin: 1.5rem 0;
       }
 
       .alert-warning {
         background: rgba(255, 193, 7, 0.1);
         border: 1px solid rgba(255, 193, 7, 0.3);
         border-radius: 12px;
+        padding: 15px 20px;
+        margin: 1.5rem 0;
       }
 
       table {
@@ -305,10 +308,15 @@
           <span class="logo-icon">LM</span>
           Luka
         </a>
-        <div class="navbar-nav">
-          <a class="nav-link" href="/">Home</a>
-          <a class="nav-link" href="/blogs.html">Blogs</a>
-          <a class="nav-link" href="/about_me.html">About</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/blogs.html">Blogs</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about_me.html">About</a></li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -351,7 +359,7 @@
         <p>最简单的方式，使用官方安装脚本：</p>
         <div class="command">curl -fsSL https://openclaw.ai/install.sh | bash</div>
 
-        <div class="alert-info" style="padding: 15px 20px; margin: 1.5rem 0;">
+        <div class="alert-info">
           <i class="bi bi-lightbulb me-2"></i>
           <strong>提示：</strong> 安装脚本会自动检测 Node.js，如果没有会帮你安装。
         </div>
@@ -360,7 +368,7 @@
         <p>安装完成后，运行配置向导：</p>
         <div class="command">openclaw configure</div>
 
-        <div class="alert-info" style="padding: 15px 20px; margin: 1.5rem 0;">
+        <div class="alert-info">
           <i class="bi bi-info-circle me-2"></i>
           <strong>说明：</strong> 配置过程会引导你设置 API Key、通讯渠道、Gateway 端口等。
         </div>
@@ -383,7 +391,7 @@
 
         <h2 id="常见问题"><i class="bi bi-question-circle me-2"></i>常见问题</h2>
 
-        <div class="alert-warning" style="padding: 15px 20px; margin: 1.5rem 0;">
+        <div class="alert-warning">
           <i class="bi bi-exclamation-triangle me-2"></i>
           <strong>问题：</strong> 安装后命令找不到？<br>
           <strong>解决：</strong> 需要将 npm 全局路径添加到 PATH：<br>
@@ -391,7 +399,7 @@
           然后添加到 ~/.zshrc 文件中。
         </div>
 
-        <div class="alert-warning" style="padding: 15px 20px; margin: 1.5rem 0;">
+        <div class="alert-warning">
           <i class="bi bi-exclamation-triangle me-2"></i>
           <strong>问题：</strong> sharp 构建失败？<br>
           <strong>解决：</strong> 如果你用 Homebrew 安装了 libvips，运行：<br>
@@ -408,7 +416,7 @@
       </article>
     </main>
 
-    <button class="back-to-top" id="backToTop" title="返回顶部">
+    <button class="back-to-top" id="backToTop" aria-label="返回顶部">
       <i class="bi bi-arrow-up"></i>
     </button>
 
