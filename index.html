@@ -166,6 +166,21 @@
         margin-bottom: 4px;
       }
 
+      .stat-number-sm {
+        font-size: 1.2rem;
+        line-height: 1.2;
+      }
+
+      .cursor {
+        display: inline-block;
+        animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
       .stat-label {
         font-size: 0.85rem;
         color: var(--text-secondary);
@@ -279,7 +294,7 @@
 
       .skill-badge.orange {
         background: rgba(245, 158, 11, 0.2);
-        color: #f59e0b;
+        color: var(--color-orange);
         border: 1px solid rgba(245, 158, 11, 0.3);
       }
 
@@ -387,7 +402,7 @@
             <div class="stat-label">Articles</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number" style="font-size: 1.2rem; line-height: 1.2;">AI Chips</div>
+            <div class="stat-number stat-number-sm">AI Chips</div>
             <div class="stat-label">Research Area</div>
           </div>
         </div>
@@ -458,7 +473,7 @@
     <footer>
       <small>
         <i class="bi bi-lightning-charge-fill text-warning"></i>
-        &copy; 2024 Luka Mai. Built with curiosity
+        &copy; 2026 Luka Mai. Built with curiosity
       </small>
     </footer>
 
@@ -467,6 +482,7 @@
       const text = "Graduate Student | AI Chip Researcher | Vimmer";
       const typedElement = document.getElementById('typed');
       let i = 0;
+      let isTyping = false;
 
       function type() {
         if (i < text.length) {
@@ -476,7 +492,22 @@
         }
       }
 
-      type();
+      function startTyping() {
+        if (!isTyping) {
+          isTyping = true;
+          type();
+        }
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          isTyping = false;
+        } else {
+          startTyping();
+        }
+      });
+
+      startTyping();
     </script>
   </body>
 </html>
