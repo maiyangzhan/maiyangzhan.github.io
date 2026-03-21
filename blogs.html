@@ -13,6 +13,7 @@
         --bg-secondary: #1a1a3a;
         --color-primary: #0d6efd;
         --color-purple: #6610f2;
+        --color-purple-accent: #9c27b0;
         --color-green: #10b981;
         --color-orange: #f59e0b;
         --text-primary: #ffffff;
@@ -219,7 +220,7 @@
       }
 
       .blog-card p {
-        color: #8b949e;
+        color: var(--text-secondary);
         margin-bottom: 0;
         line-height: 1.6;
       }
@@ -235,7 +236,7 @@
         display: flex;
         gap: 20px;
         font-size: 0.85rem;
-        color: #8b949e;
+        color: var(--text-secondary);
         margin-top: 16px;
         flex-wrap: wrap;
       }
@@ -253,7 +254,7 @@
         font-size: 0.8rem;
         margin-right: 6px;
         border: 1px solid rgba(13, 110, 253, 0.2);
-        transition: all 0.2s;
+        transition: background 0.2s, transform 0.2s;
       }
 
       .tag:hover {
@@ -411,7 +412,7 @@
         </a>
 
         <a href="/blogs/neovim install.html" class="blog-card">
-          <h3><i class="bi bi-code-square me-2" style="color: #9c27b0;"></i> neovim install</h3>
+          <h3><i class="bi bi-code-square me-2" style="color: var(--color-purple-accent);"></i> neovim install</h3>
           <p class="description">Neovim + LazyVim 完整安装配置指南，解决 Git 版本过旧导致的插件安装问题。</p>
           <div class="blog-meta">
             <span><i class="bi bi-calendar3"></i> 2024-02-06</span>
@@ -449,7 +450,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" title="返回顶部">
+    <button class="back-to-top" id="backToTop" title="返回顶部" aria-label="返回顶部">
       <i class="bi bi-arrow-up"></i>
     </button>
 
