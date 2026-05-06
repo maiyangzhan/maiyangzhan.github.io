@@ -605,6 +605,22 @@ body {
   color: var(--color-ink);
 }
 
+/* Step number badge (numbered steps in blog posts) */
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
 /* Config file block (linux clash page) */
 .config-file {
   background: var(--color-parchment) !important;
