@@ -354,6 +354,13 @@ body {
   border: 1px solid rgba(255,255,255,0.12);
 }
 
+/* --- About Photo --- */
+.about-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
 /* --- About Page Section Cards --- */
 .about-section-card {
   background: var(--color-canvas);
