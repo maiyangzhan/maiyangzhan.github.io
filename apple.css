@@ -1,0 +1,724 @@
+/* ===========================================
+   apple.css — Apple Design Language Override
+   =========================================== */
+
+/* --- Tokens --- */
+:root {
+  --color-canvas:       #ffffff;
+  --color-parchment:    #f5f5f7;
+  --color-tile-dark:    #272729;
+  --color-tile-dark-2:  #2a2a2c;
+  --color-nav-black:    #000000;
+  --color-ink:          #1d1d1f;
+  --color-muted:        #6e6e73;
+  --color-on-dark:      #ffffff;
+  --color-muted-dark:   #cccccc;
+  --color-primary:      #0066cc;
+  --color-primary-dark: #2997ff;
+  --color-hairline:     #e0e0e0;
+  --color-divider-soft: rgba(0,0,0,0.08);
+  --spacing-section:    80px;
+  --spacing-card:       24px;
+  /* Override Bootstrap variables */
+  --bs-card-box-shadow: none;
+  --bs-border-color:    #e0e0e0;
+  --bs-body-bg:         #ffffff;
+  --bs-body-color:      #1d1d1f;
+}
+
+/* --- Base reset (override Bootstrap dark theme) --- */
+html, body {
+  background-color: var(--color-canvas) !important;
+  color: var(--color-ink) !important;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+  background: var(--color-canvas) !important;
+  background-image: none !important;
+}
+
+/* --- Global Nav --- */
+.navbar {
+  background: var(--color-nav-black) !important;
+  height: 44px;
+  padding: 0 !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.navbar .container {
+  height: 44px;
+}
+
+.navbar-brand {
+  color: rgba(255,255,255,0.9) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.12px;
+  padding: 0 !important;
+  line-height: 44px;
+}
+
+/* Hide the old gradient logo icon */
+.navbar-brand .logo-icon {
+  display: none !important;
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255,255,255,0.85) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.12px;
+  padding: 0 10px !important;
+  line-height: 44px;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  background: none !important;
+  border: none !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #fff !important;
+  background: none !important;
+}
+
+.navbar-nav .nav-link.active {
+  color: #fff !important;
+  background: none !important;
+  border: none !important;
+}
+
+.navbar-toggler {
+  border-color: rgba(255,255,255,0.3) !important;
+  padding: 4px 8px;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* Hamburger menu dropdown on dark */
+.navbar-collapse {
+  background: var(--color-nav-black);
+  padding: 8px 0;
+}
+
+/* --- Reading Progress Bar --- */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--color-primary);
+  z-index: 1001;
+  transition: width 0.1s;
+}
+
+/* --- Tile System --- */
+.tile-white {
+  background: var(--color-canvas);
+  padding: var(--spacing-section) 0;
+  color: var(--color-ink);
+}
+
+.tile-parchment {
+  background: var(--color-parchment);
+  padding: var(--spacing-section) 0;
+  color: var(--color-ink);
+}
+
+.tile-dark {
+  background: var(--color-tile-dark);
+  padding: var(--spacing-section) 0;
+  color: var(--color-on-dark);
+}
+
+.tile-dark-2 {
+  background: var(--color-tile-dark-2);
+  padding: var(--spacing-section) 0;
+  color: var(--color-on-dark);
+}
+
+.tile-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+/* --- Typography --- */
+.hero-display {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.28px;
+  color: var(--color-ink);
+  margin-bottom: 12px;
+}
+
+.display-lg {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.10;
+  letter-spacing: 0;
+  color: var(--color-ink);
+  margin-bottom: 12px;
+}
+
+.display-lg-dark {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.10;
+  letter-spacing: 0;
+  color: var(--color-on-dark);
+  margin-bottom: 12px;
+}
+
+.lead-text {
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: 0;
+  color: var(--color-ink);
+  margin-bottom: 24px;
+}
+
+.lead-text-dark {
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.14;
+  color: var(--color-muted-dark);
+  margin-bottom: 24px;
+}
+
+.caption-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+  color: var(--color-muted);
+}
+
+/* --- Buttons --- */
+.btn-apple-primary {
+  display: inline-block;
+  background: var(--color-primary);
+  color: #fff !important;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  text-decoration: none !important;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.btn-apple-primary:active {
+  transform: scale(0.95);
+}
+
+.btn-apple-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-primary) !important;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.374px;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  text-decoration: none !important;
+  border: 1px solid var(--color-primary);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.btn-apple-ghost:active {
+  transform: scale(0.95);
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --- Blog Cards (used on parchment tiles) --- */
+.blog-card {
+  display: block;
+  background: var(--color-canvas) !important;
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: 18px;
+  padding: var(--spacing-card);
+  text-decoration: none !important;
+  color: var(--color-ink) !important;
+  height: 100%;
+}
+
+/* Remove old dark hover effects */
+.blog-card::before { display: none !important; }
+
+.blog-card:hover {
+  transform: none;
+  box-shadow: none !important;
+  border-color: var(--color-hairline) !important;
+}
+
+.blog-card .blog-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+}
+
+.blog-card h3 {
+  font-size: 17px !important;
+  font-weight: 600;
+  letter-spacing: -0.374px;
+  color: var(--color-ink) !important;
+  line-height: 1.24;
+  margin: 0 0 8px 0;
+}
+
+.blog-card p {
+  font-size: 14px;
+  color: var(--color-muted) !important;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+  margin-bottom: 0;
+}
+
+.blog-card .card-link {
+  color: var(--color-primary);
+  font-size: 14px;
+  letter-spacing: -0.224px;
+  text-decoration: none;
+  margin-top: 12px;
+  display: block;
+}
+
+.blog-meta {
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-top: 12px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* --- Tags --- */
+.tag {
+  background: rgba(0,102,204,0.08);
+  color: var(--color-primary);
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border: none !important;
+  background-image: none !important;
+}
+
+/* --- Skill Chips (dark tile) --- */
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.skill-chip {
+  background: rgba(255,255,255,0.08);
+  color: var(--color-on-dark);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.224px;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* --- About Page Section Cards --- */
+.about-section-card {
+  background: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: 18px;
+  padding: 32px;
+  margin-bottom: 20px;
+}
+
+.about-section-card h3 {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.374px;
+  color: var(--color-ink);
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.about-section-card p,
+.about-section-card li {
+  font-size: 17px;
+  color: var(--color-ink);
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+}
+
+.about-section-card a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* Override old dark timeline */
+.timeline-item {
+  border-left: 2px solid var(--color-hairline) !important;
+  padding-left: 20px;
+  margin: 16px 0;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary) !important;
+  border-radius: 50%;
+  position: absolute;
+  left: -5px;
+  top: 6px;
+}
+
+/* Override old gradient skill badges on about page */
+.skill-badge {
+  background: rgba(0,102,204,0.08) !important;
+  background-image: none !important;
+  color: var(--color-primary) !important;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  margin: 4px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid rgba(0,102,204,0.2) !important;
+}
+
+/* --- Article body (blog posts) --- */
+.article-body {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+  color: var(--color-ink);
+  padding: 0 22px 80px;
+}
+
+.article-body h1 {
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--color-ink) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: var(--color-ink) !important;
+  background-clip: unset !important;
+  margin-top: 48px;
+  margin-bottom: 12px;
+}
+
+.article-body h2 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.374px;
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-hairline) !important;
+  padding-bottom: 8px;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.article-body h3 {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.374px;
+  color: var(--color-ink);
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.article-body p { margin-bottom: 20px; }
+
+.article-body a {
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: none !important;
+}
+
+.article-body a:hover { text-decoration: underline; }
+
+.article-body ul,
+.article-body ol {
+  margin-bottom: 20px;
+  padding-left: 24px;
+}
+
+.article-body li { margin-bottom: 8px; }
+
+.article-body strong {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+/* Code blocks */
+.article-body pre {
+  background: var(--color-parchment) !important;
+  border: 1px solid var(--color-hairline);
+  border-radius: 12px;
+  padding: 20px !important;
+  overflow-x: auto;
+  margin: 24px 0;
+}
+
+.article-body code {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  font-size: 14px;
+}
+
+.article-body p code,
+.article-body li code {
+  background: rgba(0,0,0,0.05) !important;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--color-ink) !important;
+  border: none !important;
+  font-size: 14px;
+}
+
+/* Command blocks */
+.article-body .command,
+.command {
+  background: var(--color-parchment) !important;
+  background-image: none !important;
+  border-left: 3px solid var(--color-primary);
+  padding: 14px 20px;
+  border-radius: 0 12px 12px 0;
+  margin: 16px 0;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 14px;
+  overflow-x: auto;
+  color: var(--color-ink) !important;
+}
+
+.article-body .command::before,
+.command::before {
+  content: '$ ';
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.article-body .command strong,
+.command strong {
+  color: var(--color-ink) !important;
+}
+
+/* Article meta bar */
+.article-meta {
+  background: var(--color-parchment) !important;
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  gap: 20px;
+  color: var(--color-muted);
+  font-size: 14px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.article-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Table of contents */
+.toc {
+  background: var(--color-parchment) !important;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+  border: 1px solid var(--color-hairline) !important;
+}
+
+.toc h4 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.toc ul { margin: 0; padding-left: 18px; }
+
+.toc a {
+  border: none !important;
+  color: var(--color-primary) !important;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+/* Alert boxes — light theme */
+.alert-info {
+  background: rgba(0,102,204,0.06) !important;
+  border: 1px solid rgba(0,102,204,0.2) !important;
+  border-radius: 12px;
+  color: var(--color-ink);
+}
+
+.alert-warning {
+  background: rgba(255,193,7,0.08) !important;
+  border: 1px solid rgba(255,193,7,0.3) !important;
+  border-radius: 12px;
+  color: var(--color-ink);
+}
+
+/* Config file block (linux clash page) */
+.config-file {
+  background: var(--color-parchment) !important;
+  border: 1px solid var(--color-hairline);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+
+.config-file .filename {
+  color: var(--color-primary) !important;
+  font-size: 13px;
+  margin-bottom: 10px;
+  font-family: monospace;
+}
+
+/* --- Footer --- */
+.site-footer {
+  background: var(--color-parchment);
+  border-top: 1px solid var(--color-hairline);
+  padding: 40px 22px;
+  color: var(--color-muted);
+}
+
+.footer-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.site-footer a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: -0.224px;
+}
+
+.footer-legal {
+  font-size: 12px;
+  color: var(--color-muted);
+  letter-spacing: -0.12px;
+  margin: 0;
+}
+
+/* --- Back to top --- */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-ink);
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1000;
+  font-size: 16px;
+  box-shadow: none !important;
+}
+
+.back-to-top.visible { opacity: 1; }
+
+/* --- Override lingering Bootstrap/dark remnants --- */
+.gradient-text {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: var(--color-ink) !important;
+  background-clip: unset !important;
+  color: var(--color-ink) !important;
+}
+
+.gradient-separator { display: none; }
+
+/* Bootstrap card overrides */
+.card {
+  background: var(--color-canvas) !important;
+  border-color: var(--color-hairline) !important;
+}
+
+/* Links outside article-body */
+a { color: var(--color-primary); }
+
+/* Bootstrap text-muted override */
+.text-muted { color: var(--color-muted) !important; }
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .tile-white,
+  .tile-parchment,
+  .tile-dark,
+  .tile-dark-2 {
+    padding: 48px 0;
+  }
+
+  .hero-display { font-size: 34px; }
+
+  .display-lg,
+  .display-lg-dark { font-size: 28px; }
+
+  .btn-apple-primary,
+  .btn-apple-ghost {
+    font-size: 15px;
+    padding: 10px 18px;
+  }
+
+  .article-body { padding: 0 16px 48px; }
+}
+
+@media (max-width: 833px) {
+  .navbar-collapse {
+    padding: 8px 16px 16px;
+  }
+
+  .navbar-nav .nav-link {
+    line-height: 2.2;
+    padding: 0 !important;
+  }
+}
